@@ -7,7 +7,7 @@ import app.revanced.music.returnyoutubedislike.ReturnYouTubeDislike;
 import app.revanced.music.settings.SettingsEnum;
 import app.revanced.music.utils.LogHelper;
 
-/**
+/*
  * Handles all interaction of UI patch components.
  * <p>
  * Does not handle creating dislike spans or anything to do with {@link ReturnYouTubeDislikeApi}.
@@ -16,7 +16,7 @@ public class ReturnYouTubeDislikePatch {
     @Nullable
     private static String currentVideoId;
 
-    /**
+    /*
      * Injection point.
      * <p>
      * Called when a spanned component is initially created,
@@ -37,7 +37,7 @@ public class ReturnYouTubeDislikePatch {
         return ReturnYouTubeDislike.onComponentCreated(spanned);
     }
 
-    /**
+    /*
      * Injection point.
      */
     public static void newVideoLoaded(@NonNull String videoId) {
@@ -51,7 +51,7 @@ public class ReturnYouTubeDislikePatch {
         }
     }
 
-    /**
+    /*
      * Injection point.
      * <p>
      * Called when the user likes or dislikes.
