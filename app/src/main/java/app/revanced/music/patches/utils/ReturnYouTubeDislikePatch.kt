@@ -17,6 +17,7 @@ import app.revanced.music.utils.LogHelper;
 public class ReturnYouTubeDislikePatch {
     @Nullable
     private static String currentVideoId;
+
     /**
      * Injection point.
      * <p>
@@ -32,6 +33,7 @@ public class ReturnYouTubeDislikePatch {
      * @param original Original span that was created or reused by Litho.
      * @return The original span (if nothing should change), or a replacement span that contains dislikes.
      */
+
     @NonNull
     public static Spanned onComponentCreated(Spanned spanned) {
         return ReturnYouTubeDislike.onComponentCreated(spanned);
