@@ -114,7 +114,7 @@ public class ReVancedUtils {
      * Safe to call from any thread
      */
     public static void showToastShort(@NonNull String messageToToast) {
-        showToast(context, messageToToast, Toast.LENGTH_SHORT);
+        showToast(context, messageToToast);
     }
 
     private static void showToast(Context context, @NonNull String messageToToast) {
