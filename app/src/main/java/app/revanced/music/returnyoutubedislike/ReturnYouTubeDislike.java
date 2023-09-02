@@ -233,7 +233,7 @@ public class ReturnYouTubeDislike {
                     votingData.updateUsingVote(userVote);
                 }
                 originalDislikeSpan = oldSpannable;
-                replacementLikeDislikeSpan = createDislikeSpan(oldSpannable, isSegmentedButton, votingData);
+                replacementLikeDislikeSpan = createDislikeSpan(oldSpannable, votingData);
 
                 return replacementLikeDislikeSpan;
             }
@@ -326,9 +326,6 @@ public class ReturnYouTubeDislike {
         return userId;
     }
 
-    /**
-     * @param isSegmentedButton If UI is using the segmented single UI component for both like and dislike.
-     */
     @NonNull
     private static SpannableString createDislikeSpan(@NonNull Spanned oldSpannable, @NonNull RYDVoteData voteData) {
         // Note: Some locales use right to left layout (arabic, hebrew, etc),
