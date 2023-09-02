@@ -1,7 +1,5 @@
 package app.revanced.music.patches.utils;
 
-import static app.revanced.music.returnyoutubedislike.ReturnYouTubeDislike.Vote;
-
 import android.text.Spanned;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
