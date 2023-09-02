@@ -1,34 +1,13 @@
 package app.revanced.music.patches.utils;
 
-import static app.revanced.music.patches.video.VideoInformation.getVideoId;
 import static app.revanced.music.returnyoutubedislike.ReturnYouTubeDislike.Vote;
-import static app.revanced.music.utils.ResourceUtils.identifier;
 
-import android.graphics.Rect;
-import android.text.Editable;
-import android.text.Spannable;
-import android.text.SpannableString;
 import android.text.Spanned;
-import android.text.TextWatcher;
-import android.view.View;
-import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
-import java.lang.ref.WeakReference;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.atomic.AtomicReference;
-
-import app.revanced.music.patches.misc.VersionOverridePatch;
 import app.revanced.music.returnyoutubedislike.ReturnYouTubeDislike;
-import app.revanced.music.returnyoutubedislike.requests.ReturnYouTubeDislikeApi;
 import app.revanced.music.settings.SettingsEnum;
-import app.revanced.music.shared.PlayerType;
 import app.revanced.music.utils.LogHelper;
-import app.revanced.music.utils.ReVancedUtils;
-import app.revanced.music.utils.ResourceType;
 
 /**
  * Handles all interaction of UI patch components.
@@ -36,6 +15,8 @@ import app.revanced.music.utils.ResourceType;
  * Does not handle creating dislike spans or anything to do with {@link ReturnYouTubeDislikeApi}.
  */
 public class ReturnYouTubeDislikePatch {
+    @Nullable
+    private static String currentVideoId;
     /**
      * Injection point.
      * <p>
