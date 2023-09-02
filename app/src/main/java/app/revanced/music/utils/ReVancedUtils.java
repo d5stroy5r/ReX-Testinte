@@ -63,6 +63,22 @@ public class ReVancedUtils {
         return false;
     }
 
+    @NonNull
+    public static <T> Future<T> submitOnBackgroundThread(@NonNull Callable<T> call) {
+        return backgroundThreadPool.submit(call);
+    }
+
+    /**
+     * If the device language uses right to left text layout (hebrew, arabic, etc)
+     */
+    public static boolean isRightToLeftTextLayout() {
+        if (isRightToLeftTextLayout == null) {
+            String displayLanguage = Locale.getDefault().getDisplayLanguage();
+            isRightToLeftTextLayout = new Bidi(displayLanguage, Bidi.DIRECTION_DEFAULT_LEFT_TO_RIGHT).isRightToLeft();
+        }
+        return isRightToLeftTextLayout;
+    }
+
     public static void showToastShort(Context context, String messageToToast) {
         showToast(context, messageToToast);
     }
@@ -133,6 +149,21 @@ public class ReVancedUtils {
         if (!isCurrentlyOnMainThread()) {
             throw new IllegalStateException("Must call _on_ the main thread");
         }
+    }
+
+    /**
+     * @throws IllegalStateException if the calling thread is _off_ the main thread
+     */
+    public static void verifyOnMainThread() throws IllegalStateException {
+        if (!isCurrentlyOnMainThread()) {
+            throw new IllegalStateException("Must call _on_ the main thread");
+        }
+    }
+
+    public static boolean isNetworkConnected() {
+        NetworkType networkType = getNetworkType();
+        return networkType != NetworkType.MOBILE
+                && networkType != NetworkType.WIFI;
     }
 
     @SuppressLint("MissingPermission") // permission already included in YouTube

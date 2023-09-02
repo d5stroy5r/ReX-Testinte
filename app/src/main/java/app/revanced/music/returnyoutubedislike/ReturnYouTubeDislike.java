@@ -5,14 +5,22 @@ import static app.revanced.music.utils.StringRef.str;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
+
+import android.graphics.drawable.Drawable;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
 import android.graphics.drawable.shapes.RectShape;
+
 import android.icu.text.CompactDecimalFormat;
+
+import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
+
 import android.text.style.ForegroundColorSpan;
+import android.text.style.ImageSpan;
+
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 
@@ -22,6 +30,7 @@ import androidx.annotation.Nullable;
 
 import java.text.NumberFormat;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.Callable;
@@ -38,7 +47,6 @@ import app.revanced.music.returnyoutubedislike.requests.ReturnYouTubeDislikeApi;
 import app.revanced.music.settings.SettingsEnum;
 import app.revanced.music.utils.LogHelper;
 import app.revanced.music.utils.ReVancedUtils;
-import app.revanced.music.utils.ThemeHelper;
 
 /**
  * Because Litho creates spans using multiple threads, this entire class supports multithreading as well.
@@ -348,9 +356,7 @@ public class ReturnYouTubeDislike {
 
         SpannableStringBuilder builder = new SpannableStringBuilder();
         final boolean compactLayout = SettingsEnum.RYD_COMPACT_LAYOUT.getBoolean();
-        final int separatorColor = ThemeHelper.getDayNightTheme()
-                ? 0x29AAAAAA  // transparent dark gray
-                : 0xFFD9D9D9; // light gray
+        final int separatorColor =  0x29AAAAAA  // transparent dark gray
         DisplayMetrics dp = Objects.requireNonNull(ReVancedUtils.getContext()).getResources().getDisplayMetrics();
 
         if (!compactLayout) {

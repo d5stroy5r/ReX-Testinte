@@ -54,6 +54,14 @@ public enum SettingsEnum {
     HOOK_SHARE_BUTTON("revanced_hook_share_button", BOOLEAN, FALSE, true),
     SPOOF_APP_VERSION("revanced_spoof_app_version", BOOLEAN, FALSE, true);
 
+    // Return YouTube Dislike
+    RYD_USER_ID("ryd_user_id", STRING, "", RYD),
+    RYD_ENABLED("ryd_enabled", BOOLEAN, TRUE, RYD),
+    RYD_SHORTS("ryd_shorts", BOOLEAN, TRUE, RYD),
+    RYD_DISLIKE_PERCENTAGE("ryd_dislike_percentage", BOOLEAN, FALSE, RYD),
+    RYD_COMPACT_LAYOUT("ryd_compact_layout", BOOLEAN, FALSE, RYD),
+
+
     static {
         loadAllSettings();
     }
