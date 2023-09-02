@@ -53,13 +53,13 @@ public enum SettingsEnum {
     DEFAULT_VIDEO_QUALITY_WIFI("revanced_default_video_quality_wifi", INTEGER, -2),
     DEFAULT_VIDEO_QUALITY_MOBILE("revanced_default_video_quality_mobile", INTEGER, -2),
     HOOK_SHARE_BUTTON("revanced_hook_share_button", BOOLEAN, FALSE, true),
-    SPOOF_APP_VERSION("revanced_spoof_app_version", BOOLEAN, FALSE, true);
+    SPOOF_APP_VERSION("revanced_spoof_app_version", BOOLEAN, FALSE, true),
 
     // Return YouTube Dislike
     RYD_USER_ID("ryd_user_id", STRING, "", RYD),
     RYD_ENABLED("ryd_enabled", BOOLEAN, TRUE, RYD),
     RYD_DISLIKE_PERCENTAGE("ryd_dislike_percentage", BOOLEAN, FALSE, RYD),
-    RYD_COMPACT_LAYOUT("ryd_compact_layout", BOOLEAN, FALSE, RYD),
+    RYD_COMPACT_LAYOUT("ryd_compact_layout", BOOLEAN, FALSE, RYD);
 
 
     static {
