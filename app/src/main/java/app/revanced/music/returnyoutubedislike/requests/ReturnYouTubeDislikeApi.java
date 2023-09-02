@@ -93,7 +93,7 @@ public class ReturnYouTubeDislikeApi {
     private static boolean checkIfRateLimitWasHit(int httpResponseCode) {
         if (httpResponseCode == RATE_LIMIT_HTTP_STATUS_CODE) {
             lastTimeRateLimitWasHit = System.currentTimeMillis();
-            ReVancedUtils.showToastLong(str("revanced_ryd_failure_client_rate_limit_requested"));
+            ReVancedUtils.showToastShort(str("revanced_ryd_failure_client_rate_limit_requested"));
             return true;
         }
         return false;
