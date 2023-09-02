@@ -112,22 +112,11 @@ public class ReVancedUtils {
         showToast(context, messageToToast, Toast.LENGTH_SHORT);
     }
 
-    public static void showToastLong(Context context, String messageToToast) {
-        showToast(context, messageToToast, Toast.LENGTH_LONG);
-    }
-
     /**
      * Safe to call from any thread
      */
     public static void showToastShort(@NonNull String messageToToast) {
         showToast(context, messageToToast, Toast.LENGTH_SHORT);
-    }
-
-    /**
-     * Safe to call from any thread
-     */
-    public static void showToastLong(@NonNull String messageToToast) {
-        showToast(context, messageToToast, Toast.LENGTH_LONG);
     }
 
     private static void showToast(Context context, @NonNull String messageToToast, int toastDuration) {
