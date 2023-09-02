@@ -356,7 +356,7 @@ public class ReturnYouTubeDislike {
 
         SpannableStringBuilder builder = new SpannableStringBuilder();
         final boolean compactLayout = SettingsEnum.RYD_COMPACT_LAYOUT.getBoolean();
-        final int separatorColor =  0x29AAAAAA  // transparent dark gray
+        final int separatorColor =  0x29AAAAAA;  // transparent dark gray
         DisplayMetrics dp = Objects.requireNonNull(ReVancedUtils.getContext()).getResources().getDisplayMetrics();
 
         if (!compactLayout) {

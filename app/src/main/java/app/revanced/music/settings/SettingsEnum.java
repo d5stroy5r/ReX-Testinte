@@ -9,6 +9,7 @@ import static app.revanced.music.utils.SharedPrefHelper.getPreferences;
 import static app.revanced.music.utils.SharedPrefHelper.saveBoolean;
 import static app.revanced.music.utils.SharedPrefHelper.saveInteger;
 import static app.revanced.music.utils.SharedPrefHelper.saveString;
+import static app.revanced.integrations.utils.SharedPrefHelper.SharedPrefNames.RYD;
 
 import androidx.annotation.NonNull;
 
