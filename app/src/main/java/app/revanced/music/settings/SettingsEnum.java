@@ -9,7 +9,7 @@ import static app.revanced.music.utils.SharedPrefHelper.getPreferences;
 import static app.revanced.music.utils.SharedPrefHelper.saveBoolean;
 import static app.revanced.music.utils.SharedPrefHelper.saveInteger;
 import static app.revanced.music.utils.SharedPrefHelper.saveString;
-import static app.revanced.integrations.utils.SharedPrefHelper.SharedPrefNames.RYD;
+import app.revanced.integrations.utils.SharedPrefHelper;
 
 import androidx.annotation.NonNull;
 
@@ -56,11 +56,10 @@ public enum SettingsEnum {
     SPOOF_APP_VERSION("revanced_spoof_app_version", BOOLEAN, FALSE, true),
 
     // Return YouTube Dislike
-    RYD_USER_ID("ryd_user_id", STRING, "", RYD),
-    RYD_ENABLED("ryd_enabled", BOOLEAN, TRUE, RYD),
-    RYD_DISLIKE_PERCENTAGE("ryd_dislike_percentage", BOOLEAN, FALSE, RYD),
-    RYD_COMPACT_LAYOUT("ryd_compact_layout", BOOLEAN, FALSE, RYD);
-
+    RYD_USER_ID("ryd_user_id", STRING, ""),
+    RYD_ENABLED("ryd_enabled", BOOLEAN, TRUE),
+    RYD_DISLIKE_PERCENTAGE("ryd_dislike_percentage", BOOLEAN, FALSE),
+    RYD_COMPACT_LAYOUT("ryd_compact_layout", BOOLEAN, FALSE);
 
     static {
         loadAllSettings();
@@ -86,38 +85,6 @@ public enum SettingsEnum {
         this.returnType = returnType;
         this.defaultValue = defaultValue;
         this.rebootApp = rebootApp;
-    }
-
-    SettingsEnum(String path, ReturnType returnType, Object defaultValue, SharedPrefHelper.SharedPrefNames prefName) {
-        this(path, returnType, defaultValue, prefName, false, null, null);
-    }
-
-    SettingsEnum(String path, ReturnType returnType, Object defaultValue, SharedPrefHelper.SharedPrefNames prefName,
-                 boolean rebootApp, @Nullable String userDialogMessage, @Nullable SettingsEnum[] parents) {
-        this.path = Objects.requireNonNull(path);
-        this.returnType = Objects.requireNonNull(returnType);
-        this.value = this.defaultValue = Objects.requireNonNull(defaultValue);
-        this.sharedPref = Objects.requireNonNull(prefName);
-        this.rebootApp = rebootApp;
-
-        if (userDialogMessage == null) {
-            this.userDialogMessage = null;
-        } else {
-            if (returnType != ReturnType.BOOLEAN) {
-                throw new IllegalArgumentException("must be Boolean type: " + path);
-            }
-            this.userDialogMessage = new StringRef(userDialogMessage);
-        }
-
-        this.parents = parents;
-
-        if (parents != null) {
-            for (SettingsEnum parent : parents) {
-                if (parent.returnType != ReturnType.BOOLEAN) {
-                    throw new IllegalArgumentException("parent must be Boolean type: " + parent);
-                }
-            }
-        }
     }
 
     private static void loadAllSettings() {
