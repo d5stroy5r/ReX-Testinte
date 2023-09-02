@@ -13,13 +13,36 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
+import java.util.concurrent.Callable;
+import java.util.concurrent.Future;
+
 import androidx.annotation.NonNull;
 
+import java.text.Bidi;
+
 import java.util.Objects;
+import java.util.Locale;
 
 public class ReVancedUtils {
+     /**
+     * General purpose pool for network calls and other background tasks.
+     * All tasks run at max thread priority.
+     */
+    private static final ThreadPoolExecutor backgroundThreadPool = new ThreadPoolExecutor(
+            2, // 2 threads always ready to go
+            Integer.MAX_VALUE,
+            10, // For any threads over the minimum, keep them alive 10 seconds after they go idle
+            TimeUnit.SECONDS,
+            new SynchronousQueue<>(),
+            r -> { // ThreadFactory
+                Thread t = new Thread(r);
+                t.setPriority(Thread.MAX_PRIORITY); // run at max priority
+                return t;
+            });
     @SuppressLint("StaticFieldLeak")
     public static Context context;
+    @Nullable
+    private static Boolean isRightToLeftTextLayout;
 
     private ReVancedUtils() {
     } // utility class
@@ -151,12 +174,12 @@ public class ReVancedUtils {
         }
     }
 
-    /**
-     * @throws IllegalStateException if the calling thread is _off_ the main thread
+/**
+     * @throws IllegalStateException if the calling thread is _on_ the main thread
      */
-    public static void verifyOnMainThread() throws IllegalStateException {
-        if (!isCurrentlyOnMainThread()) {
-            throw new IllegalStateException("Must call _on_ the main thread");
+    public static void verifyOffMainThread() throws IllegalStateException {
+        if (isCurrentlyOnMainThread()) {
+            throw new IllegalStateException("Must call _off_ the main thread");
         }
     }
 
