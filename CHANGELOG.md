@@ -1,3 +1,10 @@
+# [0.119.0](https://github.com/YT-Advanced/Testinte/compare/v0.118.1...v0.119.0) (2023-09-02)
+
+
+### Features
+
+* RYD (First test) ([b5804ae](https://github.com/YT-Advanced/Testinte/commit/b5804ae9b3ed8d27672c34e6325617e033c65aef))
+
 # [0.118.0](https://github.com/YT-Advanced/ReX-integrations/compare/v0.117.3...v0.118.0) (2023-09-01)
 
 
