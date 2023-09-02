@@ -88,6 +88,38 @@ public enum SettingsEnum {
         this.rebootApp = rebootApp;
     }
 
+    SettingsEnum(String path, ReturnType returnType, Object defaultValue, SharedPrefHelper.SharedPrefNames prefName) {
+        this(path, returnType, defaultValue, prefName, false, null, null);
+    }
+
+    SettingsEnum(String path, ReturnType returnType, Object defaultValue, SharedPrefHelper.SharedPrefNames prefName,
+                 boolean rebootApp, @Nullable String userDialogMessage, @Nullable SettingsEnum[] parents) {
+        this.path = Objects.requireNonNull(path);
+        this.returnType = Objects.requireNonNull(returnType);
+        this.value = this.defaultValue = Objects.requireNonNull(defaultValue);
+        this.sharedPref = Objects.requireNonNull(prefName);
+        this.rebootApp = rebootApp;
+
+        if (userDialogMessage == null) {
+            this.userDialogMessage = null;
+        } else {
+            if (returnType != ReturnType.BOOLEAN) {
+                throw new IllegalArgumentException("must be Boolean type: " + path);
+            }
+            this.userDialogMessage = new StringRef(userDialogMessage);
+        }
+
+        this.parents = parents;
+
+        if (parents != null) {
+            for (SettingsEnum parent : parents) {
+                if (parent.returnType != ReturnType.BOOLEAN) {
+                    throw new IllegalArgumentException("parent must be Boolean type: " + parent);
+                }
+            }
+        }
+    }
+
     private static void loadAllSettings() {
         for (SettingsEnum setting : values()) {
             setting.load();
